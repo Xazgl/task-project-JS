@@ -1,0 +1,89 @@
+* {
+font-family: 'Roboto', sans-serif;
+}
+
+li{
+    list-style-type: none
+}
+
+.container {
+    width: 600px;
+}
+
+.card-task {
+    background-color:rgb(250, 250, 250);
+    box-shadow:
+     0 4px 8px 0
+     rgba(0, 0, 0, 0.2);
+    border-radius: 3%;
+    transition: transform.5s ;
+   
+}
+
+.card-task:hover {
+    transform: scale(1.1);
+}
+
+.task-name{
+    text-align: center;
+}
+
+.task-name:hover {
+    font-weight: 600;
+
+}
+
+.cardPreview {
+    text-align: center;
+}
+
+.cardBtn {
+    margin-top: 10px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.edit {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+    background-color:rgb(167, 183, 242);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
+    height: 30px;
+    width: 70px;
+    border:none;
+
+}
+
+.edit:hover {
+border-color: black;
+background-color: rgb(149, 170, 247);
+font-weight: 600;
+}
+
+.edit:focus {
+    box-shadow:  rgba(15, 2, 2, 0.2);
+    }
+
+.delete {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom:30px;
+    text-align: center;
+    background-color:rgb(242, 128, 155);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
+    height: 30px;
+    width: 70px;
+    border:none;
+    
+}
+
+.delete:hover {
+    border-color: black;
+    background-color:rgb(247, 99, 133);
+    font-weight: 600;
+}
