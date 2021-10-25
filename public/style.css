@@ -2,12 +2,17 @@
 font-family: 'Roboto', sans-serif;
 }
 
+
+
+
+
 li{
     list-style-type: none
 }
 
 .container {
     width: 600px;
+    margin:0 auto
 }
 
 .card-task {
@@ -40,6 +45,10 @@ li{
 .cardBtn {
     margin-top: 10px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1rem;
 }
 
 h1 {
@@ -48,7 +57,7 @@ h1 {
 
 .edit {
     font-family: 'Montserrat', sans-serif;
-    margin-bottom: 30px;
+
     text-align: center;
     background-color:rgb(167, 183, 242);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -71,7 +80,6 @@ font-weight: 600;
 
 .delete {
     font-family: 'Montserrat', sans-serif;
-    margin-bottom:30px;
     text-align: center;
     background-color:rgb(242, 128, 155);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
