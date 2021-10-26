@@ -20,6 +20,12 @@ taskList.forEach(function(task) {
     <li>
     <div class="card-task">
         <div class="task-name"><p>Task 5</p></div>
+        <div class="pretty p-switch p-fill">
+            <input type="checkbox" class="order" value="clickOn" />
+            <div class="state">
+             <label>Выполнена</label>
+            </div>
+        </div>
         <div class="cardPreview"><p>${task}</p></div>
         <div class="cardBtn">
           <button class="edit">Edit</button> <button class="delete">Delete</button>
@@ -32,3 +38,16 @@ taskListHtml += taskHtml //=tasklistHtml+taskhtml
 console.log(taskListHtml);
 tasksElement.innerHTML = taskListHtml;
 
+//повесил функцию на все чекбоксы
+document.querySelectorAll('.order').forEach((element)=>{
+    element.onclick = orderFunction;
+});
+
+function orderFunction() {
+    let Checkclick = document.querySelector('.order')
+    console.log(1)
+    if(this.value == "clickON") {
+        onlick="this.style.display='none' "
+
+    }
+}
