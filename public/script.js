@@ -63,10 +63,11 @@ document.querySelectorAll('.order').forEach((element)=>{
     element.onclick = orderFunction;
 });
 
-
+//нажатие зачеркивает 
 function orderFunction() {
-    let Checkclick = document.querySelector('.order')
+    let Checkclick = document.querySelectorAll('.order')
     console.log(1);
+
 if(this.checked) {
 
 const text = document.querySelector('.cardPreview');
@@ -92,8 +93,10 @@ console.log (label);
 htmlLabel == label.innerHTML;
 
 } 
-else if (!this.checked) {
-    htmlText == htmlText  
+else if (this.checked=false) {
+const text1 = document.querySelector('.cardPreview');
+//получаю HTML код объекта 
+const htmlText =  text1.innerHTML;
 }
 
 }
