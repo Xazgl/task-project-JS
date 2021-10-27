@@ -23,7 +23,7 @@ taskList.forEach(function(task) {
         <div class="pretty p-switch p-fill">
             <input type="checkbox" class="order" value="clickOn" />
             <div class="state">
-             <label>Выполнена</label>
+             <label class="label">Не Выполнена</label>
             </div>
         </div>
         <div class="cardPreview"><p>${task}</p></div>
@@ -33,21 +33,76 @@ taskList.forEach(function(task) {
 </div>
 </li>`
 taskListHtml += taskHtml //=tasklistHtml+taskhtml
+
+
 })
 
 console.log(taskListHtml);
 tasksElement.innerHTML = taskListHtml;
+
+
+// получаю объект body
+const bodyElement=document.body;
+// коллецкция childNodes содержит список всех детей объекта
+const childNodes = bodyElement.childNodes;
+//console.log(childNodes);
+const firstChild = bodyElement.firstElementChild;
+//console.log(firstChild);
+
+const elemesOne = document.querySelectorAll('.tasks');
+const childElemesOne = elemesOne.childNodes;
+console.log(childElemesOne);
+
+
+
+
+
 
 //повесил функцию на все чекбоксы
 document.querySelectorAll('.order').forEach((element)=>{
     element.onclick = orderFunction;
 });
 
+
 function orderFunction() {
     let Checkclick = document.querySelector('.order')
-    console.log(1)
-    if(this.value == "clickON") {
-        onlick="this.style.display='none' "
+    console.log(1);
+if(this.checked) {
 
-    }
+const text = document.querySelector('.cardPreview');
+//получаю HTML код объекта 
+const htmlText =  text.innerHTML;
+//вывожу в консоль 
+console.log(htmlText);
+
+//получаю зачеркнутый текст
+text.innerHTML = `<s>${htmlText}</s>`
+console.log(text.innerHTML);
+htmlText == text.innerHTML;
+
+const label = document.querySelector('.label');
+//получаю HTML код объекта 
+const htmlLabel =  label.innerHTML;
+//вывожу в консоль 
+console.log(htmlLabel);
+
+//меняет на  выполнено 
+label.innerHTML = `Выполнена`;
+console.log (label);
+htmlLabel == label.innerHTML;
+
+} 
+else if (!this.checked) {
+    htmlText == htmlText  
 }
+
+}
+
+    //if(this.value == "clickON") {
+      //  console.log(1);
+     // const card = document.querySelector('.cardPreview');
+      //card.style.color = "white";
+    //cardPreview.setAttribute ('style','color:white');
+    
+
+
