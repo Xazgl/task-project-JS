@@ -17,18 +17,21 @@ console.log(tasksElement);
 
 let taskListHtml = ''
 
-taskList.forEach(function(task) {
+taskList.forEach(function(task, index) {
     const taskHtml = `
-    <li>
-    <div class="card-task">
-        <div class="task-name"><p>Task<p class="count"> </p></p></div>
+    <li class="task-card" name="task-card-${index}">
+      <div class="card-task">
+      <div class="task-name"><p>Task</p></div>
+      <div class = "task-card__info">
         <div class="pretty p-switch p-fill">
-            <input type="checkbox" class="order" value="clickOn" />
-            <div class="state">
-             <label class="label">Не Выполнена</label>
-            </div>
+            <input type="checkbox" class="order"  data-index="${index}" value="clickOn" />
+             <div class="state">
+                 <label class="label">Не Выполнена</label>
+             </div>
         </div>
-        <div class="cardPreview"><p>${task}</p></div>
+       </div> 
+       
+        <div class="cardPreview" id="$task-name-${index}"><p>${task}</p></div>
         <div class="cardBtn">
           <button class="edit">Edit</button> <button class="delete">Delete</button>
          </div>
@@ -38,6 +41,22 @@ taskListHtml += taskHtml //=tasklistHtml+taskhtml
 })
 
 
+// обработчик на li
+//tasksElement.onclick= function(event) {
+//console.log(event.target);
+//}
+
+tasksElement.addEventListener('click',function (event) { 
+    const checkInputElem = event.target.closest('.order[type=checkbox]');//для нескольких обработчиков 
+    if (checkInputElem) {
+        console.log(checkInputElem.dataset.index);
+        if (checkInputElem.checked) {
+            console.log('checked');
+        }else {
+            console.log('unchecked');
+        }
+    }
+} /*, { once: true }*/)
 
 
 

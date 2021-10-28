@@ -11,7 +11,6 @@ body {
 
 }
 
-
 li{
     list-style-type: none
 }
@@ -34,7 +33,7 @@ li{
 }
 
 .card-task:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 
 .pretty {
@@ -79,13 +78,14 @@ h1 {
     height: 30px;
     width: 70px;
     border:none;
-
+    transition: transform.3s ;
 }
 
 .edit:hover {
 border-color: black;
 background-color: rgb(149, 170, 247);
 font-weight: 600;
+transform: scale(1.06);
 }
 
 .edit:focus {
@@ -101,11 +101,31 @@ font-weight: 600;
     height: 30px;
     width: 70px;
     border:none;
-    
+    transition: transform.3s ;
 }
 
 .delete:hover {
     border-color: black;
     background-color:rgb(247, 99, 133);
     font-weight: 600;
+    transform: scale(1.06);
+}
+.task-card__info{
+    flex-basis: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+@media screen and (max-width:400px) {
+    html {
+        font-size: 20px;
+    }
+    .pretty {
+        display:none;
+    }
+    .edit, .delete {
+        height: 50px;
+        width: 100px;
+        font-size: 1rem;
+    }
 }
