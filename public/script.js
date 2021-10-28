@@ -1,3 +1,5 @@
+
+
 let taskList = [
     'Task 1: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
     'Task 2: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
@@ -19,7 +21,7 @@ taskList.forEach(function(task) {
     const taskHtml = `
     <li>
     <div class="card-task">
-        <div class="task-name"><p>Task 5</p></div>
+        <div class="task-name"><p>Task<p class="count"> </p></p></div>
         <div class="pretty p-switch p-fill">
             <input type="checkbox" class="order" value="clickOn" />
             <div class="state">
@@ -33,9 +35,12 @@ taskList.forEach(function(task) {
 </div>
 </li>`
 taskListHtml += taskHtml //=tasklistHtml+taskhtml
-
-
 })
+
+
+
+
+
 
 console.log(taskListHtml);
 tasksElement.innerHTML = taskListHtml;
@@ -70,17 +75,18 @@ function orderFunction() {
 
 if(this.checked) {
 
+//Зачеркнутый текст через CSS
 const text = document.querySelector('.cardPreview');
-//получаю HTML код объекта 
+
+text.style.textDecoration='line-through';
 const htmlText =  text.innerHTML;
-//вывожу в консоль 
-console.log(htmlText);
 
-//получаю зачеркнутый текст
-text.innerHTML = `<s>${htmlText}</s>`
-console.log(text.innerHTML);
-htmlText == text.innerHTML;
+//Зачеркнутый текст через HTML <s>
+//text.innerHTML = `<s>${htmlText}</s>`
+//console.log(text.innerHTML);
+//htmlText == text.innerHTML;
 
+//нахожу label
 const label = document.querySelector('.label');
 //получаю HTML код объекта 
 const htmlLabel =  label.innerHTML;
@@ -93,12 +99,26 @@ console.log (label);
 htmlLabel == label.innerHTML;
 
 } 
-else if (this.checked=false) {
-const text1 = document.querySelector('.cardPreview');
-//получаю HTML код объекта 
-const htmlText =  text1.innerHTML;
-}
+else   {
+//Зачеркнутый текст через CSS
+const text = document.querySelector('.cardPreview');
 
+text.style.textDecoration='none';
+const htmlText =  text.innerHTML;
+
+//находим label
+const label = document.querySelector('.label');
+//получаю HTML код объекта 
+const htmlLabel =  label.innerHTML;
+//вывожу в консоль 
+console.log(htmlLabel);
+
+//меняет на  выполнено 
+label.innerHTML = `Не выполнена`;
+console.log (label);
+htmlLabel == label.innerHTML;
+
+}
 }
 
     //if(this.value == "clickON") {
