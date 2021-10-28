@@ -23,15 +23,15 @@ taskList.forEach(function(task, index) {
       <div class="card-task">
       <div class="task-name"><p>Task</p></div>
       <div class = "task-card__info">
-        <div class="pretty p-switch p-fill">
+          <div class="pretty p-switch p-fill">
             <input type="checkbox" class="order"  data-index="${index}" value="clickOn" />
              <div class="state">
                  <label class="label">Не Выполнена</label>
              </div>
-        </div>
-       </div> 
+          </div>
        
-        <div class="cardPreview" id="$task-name-${index}"><p>${task}</p></div>
+        <div class="cardPreview" data-index="${index}">${task}</div>
+        </div> 
         <div class="cardBtn">
           <button class="edit">Edit</button> <button class="delete">Delete</button>
          </div>
@@ -51,11 +51,44 @@ tasksElement.addEventListener('click',function (event) {
     if (checkInputElem) {
         console.log(checkInputElem.dataset.index);
         if (checkInputElem.checked) {
-            console.log('checked');
-        }else {
-            console.log('unchecked');
+            //checkInputElem.nextElementSibling.textCOontent="done"// соседний эелемент 
+            //нахожу label
+             const label = document.querySelector('.label');
+            //получаю HTML код объекта 
+            const htmlLabel =  label.innerHTML;
+            //меняет на  выполнено 
+            label.innerHTML = `Выполнена`;
+            htmlLabel == label.innerHTML;
+
+
+            checkInputElem.parentElement.parentElement.nextElementSibling.style.textDecoration ='line-through'
+       
+        } else {
+          //находим label
+          const label = document.querySelector('.label');
+            //получаю HTML код объекта 
+            const htmlLabel =  label.innerHTML;
+            //вывожу в консоль 
+           //меняет на  выполнено 
+           label.innerHTML = `Не выполнена`;
+
+           
+           checkInputElem.parentElement.parentElement.nextElementSibling.style.textDecoration=null;
         }
+        return
     }
+    if (window.matchMedia("(max-width: 400px)").matches)  {
+     const taskNameElem = event.target.closest('.cardPreview')
+     if (taskNameElem ) { 
+         const  checkInputElem = taskNameElem.previousElementSibing.firstElementChild;
+         toogleElemDecor(checkInputElem)
+      if (taskNameElem.style.textDecoration) {
+          taskNameElem.style.textDecoration = null ;
+      } else {
+          taskNameElem.style.textDecoration='line-thought';
+      }
+    }
+}
 } /*, { once: true }*/)
 
 
@@ -63,6 +96,9 @@ tasksElement.addEventListener('click',function (event) {
 
 console.log(taskListHtml);
 tasksElement.innerHTML = taskListHtml;
+
+/*
+
 
 
 // получаю объект body
@@ -148,3 +184,4 @@ htmlLabel == label.innerHTML;
     
 
 
+*/
