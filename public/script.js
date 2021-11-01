@@ -1,23 +1,22 @@
-
-
+"use strict";
+//@ts-check
+function $(selector) {
+    return document.querySelector(selector);
+}
 let taskList = [
     'Task 1: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
     'Task 2: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
     'Task 3: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
     'Task 4: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
     'Task 5: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, asperiores necessitatibus, libero minus adipisci temporibus est consequuntur et obcaecati, excepturi cum! Quidem iste repellat pariatur quo veritatis quae, quas recusandae!',
-]
-
-let tasksElement = document.querySelector ('.tasks')
+];
+let tasksElement = document.querySelector('.tasks');
 console.log(tasksElement);
-
 /*for (const task  of taskList) {
     console.log(task);
 }*/
-
-let taskListHtml = ''
-
-taskList.forEach(function(task, index) {
+let taskListHtml = '';
+taskList.forEach(function (task, index) {
     const taskHtml = `
     <li class="task-card" name="task-card-${index}">
       <div class="card-task">
@@ -37,46 +36,50 @@ taskList.forEach(function(task, index) {
           <button class="edit">Edit</button> <button class="delete">Delete</button>
          </div>
 </div>
-</li>`
-taskListHtml += taskHtml //=tasklistHtml+taskhtml
-})
-
-
+</li>`;
+    taskListHtml += taskHtml; //=tasklistHtml+taskhtml
+});
 // обработчик на li
 //tasksElement.onclick= function(event) {
 //console.log(event.target);
 //}
-
-tasksElement.addEventListener('click',function (event) { 
-    const checkInputElem = event.target.closest('.order[type=checkbox]');//для нескольких обработчиков 
-     //зачеркивание текста на большой экране 
-    if (checkInputElem) {
-        if (checkInputElem.checked) {
-            checkInputElem.parentElement.nextElementSibling.style.textDecoration ='line-through';
-        } else {
-           checkInputElem.parentElement.nextElementSibling.style.textDecoration=null;
+if (tasksElement) {
+    tasksElement.addEventListener('click', function (event) {
+        if (!event.target)
+            return;
+        const target = event.target;
+        const checkInputElem = target.closest('.order[type=checkbox]'); //для нескольких обработчиков 
+        //зачеркивание текста на большой экране 
+        if (checkInputElem) {
+            const textElem = checkInputElem.parentElement.nextElementSibling; // вынес выше if для того , что бы на оба блока кинуть 
+            if (checkInputElem.checked) {
+                textElem.style.textDecoration = 'line-through';
+            }
+            else {
+                textElem.style.textDecoration = '';
+            }
+            return;
         }
-        return
-    }
-// зачеркивание на маленькое экране 
-if (window.matchMedia("(max-width: 400px)").matches)  {
-     const taskNameElem = event.target.closest('.cardPreview') 
-    if (taskNameElem) { 
-        toggleCheckbox(taskNameElem)
-         }
-    }
-
-
-} /*, { once: true }*/)
-
+        // зачеркивание на маленькое экране 
+        if (window.matchMedia("(max-width: 400px)").matches) {
+            if (!event.target)
+                return;
+            const targetElem = event.target;
+            const taskNameElem = targetElem.closest('.cardPreview');
+            if (taskNameElem) {
+                toggleCheckbox(taskNameElem);
+            }
+        }
+    } /*, { once: true }*/);
+}
 /*
-$(document)ready.(function() { 
+$(document)ready.(function() {
     $('.order').click (fucnction (checkInputElem)) {
         if $( '.order' ).prop( "checked", true ) {
-        $('.cardPreview' ).css([ "textDecoration,"line-through"]) 
+        $('.cardPreview' ).css([ "textDecoration,"line-through"])
         } else {
         ( '.order' ).prop( "checked", false ) {
-        $('.cardPreview' ).css([ "textDecoration,"null"]) 
+        $('.cardPreview' ).css([ "textDecoration,"null"])
         }
         
     }
@@ -84,26 +87,23 @@ $(document)ready.(function() {
 
 
 */
-
-
 console.log(taskListHtml);
 tasksElement.innerHTML = taskListHtml;
-
 // функция для зачеркивания 
 function toggleCheckbox(textElem) {
-    const checkbox = textElem.previousElementSibling.firstElementChild
+    const textElement = textElem.previousElementSibling.firstElementChild;
+    const checkbox = textElement;
     if (textElem.style.textDecoration) {
-        textElem.style.textDecoration = null
-        checkbox.checked = false
-    } else {
-        textElem.style.textDecoration = 'line-through'
-        checkbox.checked = true
+        textElem.style.textDecoration = ``;
+        checkbox.checked = false;
+    }
+    else {
+        textElem.style.textDecoration = 'line-through';
+        checkbox.checked = true;
     }
 }
-
-
 /*
-$(document)ready.(function() { 
+$(document).ready.(function() {
     $(.'$textElem').is('textDecoration','null') {
         $checkbox.checked(false);
     }else {
@@ -161,7 +161,7 @@ document.querySelectorAll('.order').forEach((element)=>{
     element.onclick = orderFunction;
 });
 
-//нажатие зачеркивает 
+//нажатие зачеркивает
 function orderFunction() {
     let Checkclick = document.querySelectorAll('.order')
     console.log(1);
@@ -181,17 +181,17 @@ const htmlText =  text.innerHTML;
 
 //нахожу label
 const label = document.querySelector('.label');
-//получаю HTML код объекта 
+//получаю HTML код объекта
 const htmlLabel =  label.innerHTML;
-//вывожу в консоль 
+//вывожу в консоль
 console.log(htmlLabel);
 
-//меняет на  выполнено 
+//меняет на  выполнено
 label.innerHTML = `Выполнена`;
 console.log (label);
 htmlLabel == label.innerHTML;
 
-} 
+}
 else   {
 //Зачеркнутый текст через CSS
 const text = document.querySelector('.cardPreview');
@@ -201,12 +201,12 @@ const htmlText =  text.innerHTML;
 
 //находим label
 const label = document.querySelector('.label');
-//получаю HTML код объекта 
+//получаю HTML код объекта
 const htmlLabel =  label.innerHTML;
-//вывожу в консоль 
+//вывожу в консоль
 console.log(htmlLabel);
 
-//меняет на  выполнено 
+//меняет на  выполнено
 label.innerHTML = `Не выполнена`;
 console.log (label);
 htmlLabel == label.innerHTML;
@@ -222,4 +222,4 @@ htmlLabel == label.innerHTML;
     
 
 
-*/
+*/ 
