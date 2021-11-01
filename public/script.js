@@ -21,17 +21,18 @@ taskList.forEach(function(task, index) {
     const taskHtml = `
     <li class="task-card" name="task-card-${index}">
       <div class="card-task">
-      <div class="task-name"><p>Task</p></div>
-      <div class = "task-card__info">
+      <div class = "task-card_info">
+    
           <div class="pretty p-switch p-fill">
             <input type="checkbox" class="order"  data-index="${index}" value="clickOn" />
-             <div class="state">
-                 <label class="label">Не Выполнена</label>
-             </div>
+                <div class="state">
+                     <label class="label"></label>
+                </div>
           </div>
-       
+          
         <div class="cardPreview" data-index="${index}">${task}</div>
-        </div> 
+        </div>
+
         <div class="cardBtn">
           <button class="edit">Edit</button> <button class="delete">Delete</button>
          </div>
@@ -48,56 +49,93 @@ taskListHtml += taskHtml //=tasklistHtml+taskhtml
 
 tasksElement.addEventListener('click',function (event) { 
     const checkInputElem = event.target.closest('.order[type=checkbox]');//для нескольких обработчиков 
+     //зачеркивание текста на большой экране 
     if (checkInputElem) {
-        console.log(checkInputElem.dataset.index);
         if (checkInputElem.checked) {
-            //checkInputElem.nextElementSibling.textCOontent="done"// соседний эелемент 
-            //нахожу label
-             const label = document.querySelector('.label');
-            //получаю HTML код объекта 
-            const htmlLabel =  label.innerHTML;
-            //меняет на  выполнено 
-            label.innerHTML = `Выполнена`;
-            htmlLabel == label.innerHTML;
-
-
-            checkInputElem.parentElement.parentElement.nextElementSibling.style.textDecoration ='line-through'
-       
+            checkInputElem.parentElement.nextElementSibling.style.textDecoration ='line-through';
         } else {
-          //находим label
-          const label = document.querySelector('.label');
-            //получаю HTML код объекта 
-            const htmlLabel =  label.innerHTML;
-            //вывожу в консоль 
-           //меняет на  выполнено 
-           label.innerHTML = `Не выполнена`;
-
-           
-           checkInputElem.parentElement.parentElement.nextElementSibling.style.textDecoration=null;
+           checkInputElem.parentElement.nextElementSibling.style.textDecoration=null;
         }
         return
     }
-    if (window.matchMedia("(max-width: 400px)").matches)  {
-     const taskNameElem = event.target.closest('.cardPreview')
-     if (taskNameElem ) { 
-         const  checkInputElem = taskNameElem.previousElementSibing.firstElementChild;
-         toogleElemDecor(checkInputElem)
-      if (taskNameElem.style.textDecoration) {
-          taskNameElem.style.textDecoration = null ;
-      } else {
-          taskNameElem.style.textDecoration='line-thought';
-      }
+// зачеркивание на маленькое экране 
+if (window.matchMedia("(max-width: 400px)").matches)  {
+     const taskNameElem = event.target.closest('.cardPreview') 
+    if (taskNameElem) { 
+        toggleCheckbox(taskNameElem)
+         }
     }
-}
+
+
 } /*, { once: true }*/)
 
+/*
+$(document)ready.(function() { 
+    $('.order').click (fucnction (checkInputElem)) {
+        if $( '.order' ).prop( "checked", true ) {
+        $('.cardPreview' ).css([ "textDecoration,"line-through"]) 
+        } else {
+        ( '.order' ).prop( "checked", false ) {
+        $('.cardPreview' ).css([ "textDecoration,"null"]) 
+        }
+        
+    }
 
+
+
+*/
 
 
 console.log(taskListHtml);
 tasksElement.innerHTML = taskListHtml;
 
+// функция для зачеркивания 
+function toggleCheckbox(textElem) {
+    const checkbox = textElem.previousElementSibling.firstElementChild
+    if (textElem.style.textDecoration) {
+        textElem.style.textDecoration = null
+        checkbox.checked = false
+    } else {
+        textElem.style.textDecoration = 'line-through'
+        checkbox.checked = true
+    }
+}
+
+
 /*
+$(document)ready.(function() { 
+    $(.'$textElem').is('textDecoration','null') {
+        $checkbox.checked(false);
+    }else {
+      ( ($textElem).is('textDecoration','line-through') )
+       $checkbox.checked(true);
+  }
+
+
+
+
+
+
+
+function  toggleCheckbox($textElem){
+
+  let checbox = $("document.querySelectorAll ('.order[type=checkbox]')
+  if (($textElem).is('textDecoration','null') {
+      $checkbox.checked(false);
+  } else {
+      ( ($textElem).is('textDecoration','line-through') )
+       $checkbox.checked(true);
+  }
+
+}
+}
+
+
+
+
+
+
+
 
 
 

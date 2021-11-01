@@ -29,7 +29,7 @@ li{
     border-radius: 2%;
     transition: transform.5s ;
     margin-bottom: 10px;
-   
+    padding: 2mm;
 }
 
 .card-task:hover {
@@ -53,6 +53,7 @@ li{
 
 .cardPreview {
     text-align: center;
+    padding-top: 1rem;
 }
 
 .cardBtn {
@@ -70,7 +71,6 @@ h1 {
 
 .edit {
     font-family: 'Montserrat', sans-serif;
-
     text-align: center;
     background-color:rgb(167, 183, 242);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -79,6 +79,7 @@ h1 {
     width: 70px;
     border:none;
     transition: transform.3s ;
+   
 }
 
 .edit:hover {
